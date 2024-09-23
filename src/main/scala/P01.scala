@@ -10,4 +10,9 @@ object P01 {
     case _::tail => lastRecursive(tail)
     case _ => throw new NoSuchElementException
   }
+  
+  def lastMatch[A](listProvided: List[A]): A = listProvided match {
+    case _ :+ last => last
+    case _ => throw new NoSuchElementException
+  }
 }
