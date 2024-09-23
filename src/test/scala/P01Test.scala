@@ -5,6 +5,13 @@ import org.scalatest.matchers.should.Matchers.{an, be, should}
 
 class P01Test extends AnyFunSuiteLike {
   
+  test("last should return the last element as int of a list consisting two integers") {
+    val intList = List(1, 2)
+    P01.lastBuiltIn(intList) `should` be(2)
+    P01.lastRecursive(intList) `should` be(2)
+    P01.lastMatch(intList) `should` be(2)
+  }
+  
   test("last should return the last element as int of a list consisting of integers") {
     val intList = List(1, 1, 2, 3, 5, 8)
     P01.lastBuiltIn(intList) `should` be(8)
