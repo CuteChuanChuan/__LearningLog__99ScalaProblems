@@ -29,5 +29,4 @@ object P06 {
     else true
   }
   
-  def
 }
