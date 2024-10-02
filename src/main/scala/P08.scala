@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 object P08 {
   
   def compressRecursive[A](listProvided: List[A]): List[A] = listProvided match {
@@ -7,18 +9,20 @@ object P08 {
   }
   
   def compressTailRecursion[A](listProvided: List[A]): List[A] = {
-    def compressInner[A](acc: List[A], listRemained: List[A]): List[A] = listRemained match {
+    @tailrec
+    def compressInner[B](acc: List[B], listRemained: List[B]): List[B] = listRemained match {
       case null => throw new NullPointerException
       case h :: tail => compressInner(h :: acc, tail.dropWhile(_ == h))
       case Nil => acc.reverse
       
     }
+    
     compressInner(Nil, listProvided)
   }
   
   def compressFoldRight[A](listProvided: List[A]): List[A] = {
     if (listProvided == null) throw new NullPointerException
-    else listProvided.foldRight(Nil: List[A]) { ( element, accumulator ) =>
+    else listProvided.foldRight(Nil: List[A]) { (element, accumulator) =>
       if (accumulator.isEmpty || accumulator.head != element) element :: accumulator
       else accumulator
     }
